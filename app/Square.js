@@ -16,7 +16,7 @@ var Square = React.createClass({
   render() {
     return (
       <span  onClick={this.props.makeMove.bind(this, this.props.rows, this.props.cols)}
-            style={Object.assign({}, styles.square, color(this.props.value))}>{this.props.value}</span>
+            style={Object.assign({}, styles.square, color(this.props.value))}></span>
     )
   }
 })

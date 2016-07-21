@@ -48,10 +48,19 @@ var TicTacToe = React.createClass({
     return square === '';
   },
 
+  switchPlayers: function() {
+    var currentPlayer = this.state.currentPlayer === this.state.player1 ? this.state.player2 : this.state.player1;
+
+    this.setState({
+      currentPlayer: currentPlayer
+    })
+  },
+
   makeMove: function(row, col) {
     if (this.checkValidity(row, col)) {
       var board = this.state.board;
       board[row][col] = this.state.currentPlayer.symbol;
+      this.switchPlayers();
 
       this.setState({
         board: board

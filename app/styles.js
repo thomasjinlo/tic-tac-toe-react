@@ -3,6 +3,7 @@ var styles = {
     minWidth: '100px',
     minHeight: '100px',
     border: '1px solid black',
+    float: 'left',
     display: 'inline-block'
   },
   ex: {
@@ -12,8 +13,8 @@ var styles = {
     backgroundColor: 'red',
   },
   board: {
-    width: 'auto',
-    height: '100%'
+    width: '330px',
+    height: '330px'
   }
 }
 

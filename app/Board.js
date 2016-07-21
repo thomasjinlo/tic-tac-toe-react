@@ -13,14 +13,14 @@ var Board = React.createClass({
         {this.props.board.map((element, rows) => {
           return element.map((value, cols) => {
             if (cols === 2) {
-              return  <span>
+              return  <div style={styles.container}>
                         <Square makeMove={this.props.makeMove}
                                 rows={rows}
                                 value={value}
                                 cols={cols}
                                  />
                                <br />
-                      </span>
+                      </div>
             } else {
               return <Square  makeMove={this.props.makeMove}
                               rows={rows}
