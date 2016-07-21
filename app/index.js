@@ -40,16 +40,24 @@ var TicTacToe = React.createClass({
     })
   },
 
-  makeMove: function(row, col) {
+  checkValidity: function(row, col) {
+    // empty string == true;
     var board = this.state.board;
-    console.log("row is ", row)
-    console.log("col is ", col)
-    board[row][col] = this.state.currentPlayer.symbol;
-    console.log(board)
-    this.setState({
-      board: board
-    })
+    var square = board[row][col];
+    return square === '';
+  },
 
+  makeMove: function(row, col) {
+    if (this.checkValidity(row, col)) {
+      var board = this.state.board;
+      board[row][col] = this.state.currentPlayer.symbol;
+
+      this.setState({
+        board: board
+      });
+    } else {
+      console.log('invalid move');
+    }
   },
 
   render: function() {
