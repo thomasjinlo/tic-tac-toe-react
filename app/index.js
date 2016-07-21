@@ -17,6 +17,7 @@ var TicTacToe = React.createClass({
       player1: {},
       player2: {},
       gameStatus: false,
+      possibleSolutions: [],
       currentPlayer: null
     }
   },
@@ -56,15 +57,104 @@ var TicTacToe = React.createClass({
     })
   },
 
+  threeInRow: function() {
+    var solutions = this.state.possibleSolutions;
+    var winningCombination = this.state.currentPlayer.symbol.repeat(3)
+    console.log(solutions)
+    var bool = false;
+
+    solutions.forEach(function(combination) {
+      if (combination == winningCombination) {
+        console.log("IT WINS")
+        bool = true;
+      }
+    })
+    return bool
+  },
+
+  checkWin: function() {
+
+    // find all possible solutions
+    this.getHorizontals()
+    this.getVerticals()
+    this.getDiagonals()
+    // loop through solutions to see if there is a three in a row
+    return this.threeInRow();
+  },
+
+  getDiagonals: function() {
+    var board = this.state.board;
+    var solutions = this.state.possibleSolutions;
+
+    var downDiag = board[0][0] + board[1][1] + board[2][2]
+    var upDiag = board[2][0] + board[1][1] + board[0][2]
+
+    solutions.push(downDiag)
+    solutions.push(upDiag)
+
+    this.setState({
+      possibleSolutions: solutions
+    })
+  },
+
+  getVerticals: function() {
+    var board = this.state.board;
+    var solutions = this.state.possibleSolutions;
+
+    board.forEach(function(arr, col){
+      var line = '';
+      arr.forEach(function(square, row) {
+        line += board[row][col]
+      })
+      solutions.push(line)
+    })
+
+    this.setState({
+      possibleSolutions: solutions
+    })
+  },
+
+  getHorizontals: function() {
+    var board = this.state.board;
+    var solutions = this.state.possibleSolutions;
+
+    board.forEach(function(arr) {
+      var line = arr.join('');
+      solutions.push(line);
+    })
+    this.setState({
+      possibleSolutions: solutions
+    })
+  },
+
+  // checkDraw: function() {
+  //
+  // },
+
+  // checkGameOver: function() {
+  //   checkWin();
+  //   checkDraw();
+  // },
+
   makeMove: function(row, col) {
     if (this.checkValidity(row, col)) {
       var board = this.state.board;
       board[row][col] = this.state.currentPlayer.symbol;
-      this.switchPlayers();
 
       this.setState({
-        board: board
+        board: board,
+        possibleSolutions: []
       });
+
+      if (this.checkWin()) {
+        console.log("WE WIN?")
+        alert("Winner is " + this.state.currentPlayer.symbol)
+      } else {
+        console.log("No WIN YET")
+        this.switchPlayers();
+      }
+
+
     } else {
       console.log('invalid move');
     }
