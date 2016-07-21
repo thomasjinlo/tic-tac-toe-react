@@ -4,9 +4,10 @@ var Board = require('./Board')
 var Welcome = require('./Welcome');
 
 // var _board = new Array(new Array(3), new Array(3), new Array(3))
-var _board = [[1,2,3],
-              [4,5,6],
-              [7,8,9]];
+
+var _board = [["", "", ""],
+              ["", "", ""],
+              ["", "", ""]];
 
 var TicTacToe = React.createClass({
 
