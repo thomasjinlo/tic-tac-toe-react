@@ -66,7 +66,6 @@ var TicTacToe = React.createClass({
 
     solutions.forEach(function(combination) {
       if (combination == winningCombination) {
-        console.log("IT WINS")
         bool = true;
       }
     })
@@ -74,7 +73,6 @@ var TicTacToe = React.createClass({
   },
 
   checkWin: function() {
-
     // find all possible solutions
     this.getHorizontals()
     this.getVerticals()
@@ -143,8 +141,7 @@ var TicTacToe = React.createClass({
       board[row][col] = this.state.currentPlayer.symbol;
 
       this.setState({
-        board: board,
-        possibleSolutions: []
+        board: board
       });
 
       if (this.checkWin()) {
@@ -156,6 +153,9 @@ var TicTacToe = React.createClass({
         this.switchPlayers();
       }
 
+      this.setState({
+        possibleSolutions: []
+      })
 
     } else {
       console.log('invalid move');
