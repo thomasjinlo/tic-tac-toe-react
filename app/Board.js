@@ -7,30 +7,26 @@ function puke (object) {
 }
 
 var Board = React.createClass({
+
+  renderSquares: function(board, makeMove) {
+    return board.map((arr, row) => {
+      return arr.map((piece, col) => {
+        return  <Square makeMove={makeMove}
+                        row={row}
+                        value={piece}
+                        col={col} />
+      })
+    })
+  },
+
   render() {
     return (
-      <div style={styles.board}>
-        {this.props.board.map((element, rows) => {
-          return element.map((value, cols) => {
-            if (cols === 2) {
-              return  <div style={styles.container}>
-                        <Square makeMove={this.props.makeMove}
-                                rows={rows}
-                                value={value}
-                                cols={cols}
-                                 />
-                               <br />
-                      </div>
-            } else {
-              return <Square  makeMove={this.props.makeMove}
-                              rows={rows}
-                              value={value}
-                              cols={cols} />
-            }
-          })
-        })}
-    </div>)
+      <div className="row" style={styles.board}>
+        {this.renderSquares(this.props.board, this.props.makeMove)}
+      </div>
+    )
   }
-})
+
+});
 
 module.exports = Board;

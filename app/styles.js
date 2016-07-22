@@ -1,20 +1,18 @@
 var styles = {
   square: {
-    minWidth: '100px',
-    minHeight: '100px',
+    minHeight: '200px',
+    minWidth: '200px',
     border: '1px solid black',
     float: 'left',
     display: 'inline-block'
   },
-  ex: {
-    backgroundColor: 'black',
-  },
-  oh: {
-    backgroundColor: 'red',
-  },
   board: {
-    width: '330px',
-    height: '330px'
+    width: '600px',
+    height: '600px'
+  },
+  img: {
+    width: '100%',
+    height: 'auto'
   }
 }
 

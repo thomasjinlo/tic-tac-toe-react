@@ -1,13 +1,13 @@
 var React = require('react');
 var styles = require('./styles');
 
-var color = function(value) {
-  if (value === 'X') {
-    return styles.ex;
-  } else if (value === 'O') {
-    return styles.oh;
+function exOh(value) {
+  if (value === "X") {
+    return "../ex.jpg"
+  } else if (value === "O") {
+    return "../o.jpg"
   } else {
-    return;
+    return ""
   }
 }
 
@@ -15,8 +15,10 @@ var Square = React.createClass({
 
   render() {
     return (
-      <span  onClick={this.props.makeMove.bind(this, this.props.rows, this.props.cols)}
-            style={Object.assign({}, styles.square, color(this.props.value))}></span>
+      <span className="col-sm-4" onClick={this.props.makeMove.bind(this, this.props.row, this.props.col)}
+            style={styles.square}>
+        <img src={exOh(this.props.value)} style={styles.img} />
+     </span>
     )
   }
 })

@@ -160,12 +160,18 @@ var TicTacToe = React.createClass({
     }
   },
 
-  render: function() {
+  renderGameState: function() {
     var gameState = this.state.gameStatus ? <Board board={this.state.board}
                                                    makeMove={this.makeMove}  />
                                           : <Welcome choosePlayer={this.choosePlayer} />;
+    return gameState;
+  },
+
+  render: function() {
       return (
-        gameState
+        <div className="container">
+          {this.renderGameState()}
+        </div>
     )
   }
 })
