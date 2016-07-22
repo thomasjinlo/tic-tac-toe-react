@@ -7,7 +7,7 @@ function puke (object) {
 }
 
 var Board = React.createClass({
-
+  
   renderSquares: function(board, makeMove) {
     return board.map((arr, row) => {
       return arr.map((piece, col) => {

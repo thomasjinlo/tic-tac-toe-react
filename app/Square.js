@@ -15,10 +15,10 @@ var Square = React.createClass({
 
   render() {
     return (
-      <span className="col-sm-4" onClick={this.props.makeMove.bind(this, this.props.row, this.props.col)}
+      <span className="col-xs-4" onClick={this.props.makeMove.bind(this, this.props.row, this.props.col)}
             style={styles.square}>
         <img src={exOh(this.props.value)} style={styles.img} />
-     </span>
+      </span>
     )
   }
 })

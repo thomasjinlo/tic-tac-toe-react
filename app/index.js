@@ -18,7 +18,8 @@ var TicTacToe = React.createClass({
       player2: {},
       gameStatus: false,
       possibleSolutions: [],
-      currentPlayer: null
+      currentPlayer: null,
+      gameOver: false
     }
   },
 
@@ -147,8 +148,9 @@ var TicTacToe = React.createClass({
       });
 
       if (this.checkWin()) {
-        console.log("WE WIN?")
-        alert("Winner is " + this.state.currentPlayer.symbol)
+        this.setState({
+          gameOver: true
+        })
       } else {
         console.log("No WIN YET")
         this.switchPlayers();
@@ -165,6 +167,12 @@ var TicTacToe = React.createClass({
                                                    makeMove={this.makeMove}  />
                                           : <Welcome choosePlayer={this.choosePlayer} />;
     return gameState;
+  },
+
+  componentDidUpdate: function() {
+    if (this.state.gameOver) {
+      alert("Winner is " + this.state.currentPlayer.symbol)
+    }
   },
 
   render: function() {
