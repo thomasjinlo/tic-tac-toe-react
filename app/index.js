@@ -169,9 +169,28 @@ var TicTacToe = React.createClass({
     return gameState;
   },
 
+  resetGame: function() {
+    var _board = [["", "", ""],
+                  ["", "", ""],
+                  ["", "", ""]];
+
+    console.log(_board);
+    this.setState({
+      board: _board,
+      player1: {},
+      player2: {},
+      gameStatus: false,
+      possibleSolutions: [],
+      currentPlayer: null,
+      gameOver: false,
+    });
+  },
+
   componentDidUpdate: function() {
     if (this.state.gameOver) {
       alert("Winner is " + this.state.currentPlayer.symbol)
+      var resetConfirmation = confirm('Reset this shit?');
+      if (resetConfirmation) this.resetGame();
     }
   },
 
