@@ -2,6 +2,7 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 var Board = require('./Board')
 var Welcome = require('./Welcome');
+var styles = require('./styles');
 
 // var _board = new Array(new Array(3), new Array(3), new Array(3))
 
@@ -164,7 +165,8 @@ var TicTacToe = React.createClass({
 
   renderGameState: function() {
     var gameState = this.state.gameStatus ? <Board board={this.state.board}
-                                                   makeMove={this.makeMove}  />
+                                                   makeMove={this.makeMove}
+                                                   currentPiece={this.state.currentPlayer.symbol} />
                                           : <Welcome choosePlayer={this.choosePlayer} />;
     return gameState;
   },
@@ -190,13 +192,13 @@ var TicTacToe = React.createClass({
     if (this.state.gameOver) {
       alert("Winner is " + this.state.currentPlayer.symbol)
       var resetConfirmation = confirm('Reset this shit?');
-      if (resetConfirmation) this.resetGame();
+      if (resetConfirmation) this.resetGame();main-container
     }
   },
 
   render: function() {
       return (
-        <div className="container">
+        <div className="container" style={styles.appContainer}>
           {this.renderGameState()}
         </div>
     )

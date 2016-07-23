@@ -1,13 +1,16 @@
-var React = require("react")
+var React = require("react");
+var styles = require('./styles');
 
 var Welcome = React.createClass({
 
   render: function() {
     return(
-      <div>
-        <h2>Choose X or O</h2>
-        <button onClick={this.props.choosePlayer.bind(this, "X")}>X</button>
-        <button onClick={this.props.choosePlayer.bind(this, "O")}>O</button>
+      <div className="text-center">
+        <h1 style={Object.assign({}, styles.title, styles.tic)}>Tic</h1>
+        <h1 style={styles.title}>Tac</h1>
+        <h1 style={styles.title}>Toe</h1>
+        <button className="btn btn-lg" onClick={this.props.choosePlayer.bind(this, "X")} style={styles.button}>X</button>
+        <button className="btn btn-lg" onClick={this.props.choosePlayer.bind(this, "O")} style={styles.button}>O</button>
       </div>
     )
   }
