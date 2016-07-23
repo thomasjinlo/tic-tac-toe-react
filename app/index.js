@@ -15,8 +15,8 @@ var TicTacToe = React.createClass({
   getInitialState: function() {
     return {
       board: _board,
-      player1: {},
-      player2: {},
+      player1: {name: 'Player 1'},
+      player2: {name: 'Player 2'},
       gameStatus: false,
       possibleSolutions: [],
       currentPlayer: null,
@@ -62,7 +62,6 @@ var TicTacToe = React.createClass({
   threeInRow: function() {
     var solutions = this.state.possibleSolutions;
     var winningCombination = this.state.currentPlayer.symbol.repeat(3)
-    console.log(solutions)
     var bool = false;
 
     solutions.forEach(function(combination) {
@@ -127,14 +126,23 @@ var TicTacToe = React.createClass({
     })
   },
 
-  // checkDraw: function() {
-  //
-  // },
+  checkDraw: function() {
+    var board = this.state.board;
+    var bool = true;
+    console.log(board)
+    board.forEach(function(element) {
+      element.forEach(function(squareValue) {
+        if (squareValue === "") bool = false;
+      })
+    })
+    console.log("draw")
+    return bool
+  },
 
-  // checkGameOver: function() {
-  //   checkWin();
-  //   checkDraw();
-  // },
+  checkGameOver: function() {
+    if (this.checkWin()) return this.checkWin();
+    if (this.checkDraw()) return this.checkDraw();
+  },
 
   makeMove: function(row, col) {
     if (this.checkValidity(row, col)) {
@@ -145,12 +153,11 @@ var TicTacToe = React.createClass({
         board: board
       });
 
-      if (this.checkWin()) {
+      if (this.checkGameOver()) {
         this.setState({
           gameOver: true
         })
       } else {
-        console.log("No WIN YET")
         this.switchPlayers();
       }
 
@@ -176,7 +183,6 @@ var TicTacToe = React.createClass({
                   ["", "", ""],
                   ["", "", ""]];
 
-    console.log(_board);
     this.setState({
       board: _board,
       player1: {},
@@ -190,7 +196,7 @@ var TicTacToe = React.createClass({
 
   componentDidUpdate: function() {
     if (this.state.gameOver) {
-      alert("Winner is " + this.state.currentPlayer.symbol)
+      (this.checkDraw()) ? alert("Cats game!") : alert("Winner is " + this.state.currentPlayer.name)
       var resetConfirmation = confirm('Reset this shit?');
       if (resetConfirmation) this.resetGame();main-container
     }

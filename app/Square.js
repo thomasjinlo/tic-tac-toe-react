@@ -7,7 +7,7 @@ function exOh(value) {
   } else if (value === "O") {
     return "../o.jpg"
   } else {
-    return ""
+    return "../white.png"
   }
 }
 
