@@ -196,7 +196,7 @@ var TicTacToe = React.createClass({
 
   componentDidUpdate: function() {
     if (this.state.gameOver) {
-      (this.checkDraw()) ? alert("Cats game!") : alert("Winner is " + this.state.currentPlayer.name)
+      (this.checkWin()) ? alert("Winner is " + this.state.currentPlayer.name) : alert("Cats game!")
       var resetConfirmation = confirm('Reset this shit?');
       if (resetConfirmation) this.resetGame();main-container
     }
